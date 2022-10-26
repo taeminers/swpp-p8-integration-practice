@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 export interface HeroType {
   id: number;
   name: string;
@@ -17,7 +20,7 @@ const initialState: HeroState = {
   heros: [],
   selectedHero: null,
 };
-
+//
 export const fetchHeros = createAsyncThunk("hero/fetchHeros", async () => {
   const response = await axios.get<HeroType[]>("/api/hero/info/");
   return response.data;
@@ -81,4 +84,3 @@ export const heroActions = heroSlice.actions;
 export const selectHero = (state: RootState) => state.hero;
 
 export default heroSlice.reducer;
-//
