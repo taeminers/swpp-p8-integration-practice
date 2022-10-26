@@ -20,7 +20,7 @@ const initialState: HeroState = {
   heros: [],
   selectedHero: null,
 };
-
+//
 export const fetchHeros = createAsyncThunk("hero/fetchHeros", async () => {
   const response = await axios.get<HeroType[]>("/api/hero/info/");
   return response.data;
